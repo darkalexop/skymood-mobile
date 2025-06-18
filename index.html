@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMood - Live Weather</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay" id="bg-overlay"></div>
+    <div class="stars" id="stars-effect"></div>
+    <div class="twinkling" id="twinkling-effect"></div>
+    <div class="rain-container" id="rain-effect"></div>
+    
+    <div class="weather-app">
+        <div id="city-input-bar">
+            <input type="text" id="city-input" placeholder="Search City..."/>
+            <button id="search-icon-btn" title="Search City">
+                <img src="https://www.svgrepo.com/show/520828/search.svg" alt="Search"/>
+            </button>
+        </div>
+
+        <div class="top-section">
+            <h2 id="city-name">Loading...</h2>
+        </div>
+
+        <div class="current-weather">
+            <img id="weather-icon" src="https://openweathermap.org/img/wn/01d@4x.png" alt="Weather Icon"/>
+            <p id="temperature">--<sup>°C</sup></p>
+            <p id="weather-condition">--</p>
+            <p id="min-max-temp">--° ~ --°</p>
+            <p id="feels-like">Feels like --°C</p>
+        </div>
+
+        <div class="forecast-section">
+            <h3>Hourly</h3>
+            <div class="hourly-forecast" id="hourly-forecast-container">
+                 <div class="loading-placeholder">Loading hourly forecast...</div>
+            </div>
+        </div>
+
+        <div class="forecast-section">
+            <h3>Next 7 Days</h3>
+            <div class="weekly-forecast" id="weekly-forecast-container">
+                 <div class="loading-placeholder">Loading weekly forecast...</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
