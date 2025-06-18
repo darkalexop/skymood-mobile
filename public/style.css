@@ -1,0 +1,94 @@
+/* Poora CSS code (jaisa pichhle Blogger response mein tha, live background effects ke saath) yahan paste karein */
+/* Ismein woh .background-overlay, .stars, .twinkling, .rain-container, .rain-drop waale styles honge */
+/* Font 'Nunito' set karein */
+/* Colors aapke screenshot ke hisaab se set karein (dark blue/purple night) */
+
+/* ==== Example: Key CSS Rules === */
+:root {
+    --font-primary: 'Nunito', sans-serif;
+    --text-light: #e0e6f0; --text-medium: #a8b2d1; --text-dark: #8892b0;
+    --card-bg: rgba(22, 27, 44, 0.7); /* Darker blue/purpleish card */
+    --card-border: rgba(100, 120, 150, 0.3);
+    --accent-yellow: #facc15;
+    --bg-day-clear: linear-gradient(135deg, #87CEEB 0%, #56CCF2 100%);
+    --bg-night-clear: linear-gradient(135deg, #0f172a 0%, #1e293b 70%, #3b3273 100%);
+    /* Add more gradients for rainy, cloudy, stormy etc. */
+}
+body { /* ... (body styles with default background) ... */ }
+.background-overlay { /* ... (styles for dynamic gradient overlay) ... */ }
+/* Baaki saara CSS (weather-app, top-section, current-weather, forecast sections, etc.) pichhle code se yahan copy karein */
+/* Aur use aapke diye gaye screenshot ke design ke aur kareeb laayein. */
+/* MAIN CSS HERE - for brevity, use the one from previous response as base and tweak */
+
+/* Updated CSS (copy from your previous response and adapt for new classes if any) */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: var(--font-primary);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding: 15px;
+    overflow: hidden; 
+    position: relative; 
+    background-color: #0f172a; 
+}
+
+.background-overlay { position: fixed; top:0; left:0; right:0; bottom:0; z-index: -2; transition: background 1.5s ease-in-out;}
+.stars, .twinkling, .clouds-bg { position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%; display:block; opacity: 0; transition: opacity 1.5s ease-in-out; z-index: -1; }
+.stars { background:#000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center; }
+.twinkling{ background:transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center; animation:move-twink-back 200s linear infinite; }
+@keyframes move-twink-back { from {background-position:0 0;} to {background-position:-10000px 5000px;} }
+.clouds-bg { /* Add cloud background image if needed or use CSS clouds */ opacity:0;}
+
+.rain-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity:0; transition: opacity 1s;}
+.rain-drop { position: absolute; bottom: 100%; width: 1px; height: 50px; background: linear-gradient(transparent, rgba(200,220,255,0.7)); animation: fall 1s linear infinite; }
+@keyframes fall { 0% { transform: translateY(0vh); } 100% { transform: translateY(105vh); } }
+@keyframes sway { 0% { transform: translateX(0px) rotate(0deg); } 100% { transform: translateX(30px) rotate(10deg); } }
+
+.weather-app {
+    width: 100%; max-width: 380px; background: var(--card-bg); backdrop-filter: blur(25px);
+    border-radius: 35px; border: 1px solid var(--card-border); padding: 30px 25px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); position:relative; z-index:5; 
+    overflow-y:auto; max-height: 95vh; /* Adjust max-height */
+}
+.weather-app::-webkit-scrollbar { width: 5px; }
+.weather-app::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius:10px; }
+
+#city-input-bar { display: flex; gap: 8px; margin-bottom:20px; position: relative; background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 25px; padding-left:20px;}
+#city-input { flex-grow: 1; background: transparent; border:none; padding: 15px 0px; color: var(--text-light); font-size: 1rem; outline:none; font-weight:500; }
+#search-icon-btn { background:transparent; border:none; padding: 0 18px; cursor:pointer; }
+#search-icon-btn img { width:18px; height:18px; filter: invert(0.9) opacity(0.8);}
+
+.top-section { text-align:left; margin-bottom:15px;} /* Removed flex from here for now */
+#city-name { font-size: 2.2rem; font-weight: 700; }
+.current-weather { text-align: center; margin-bottom: 25px; }
+#weather-icon { width: 90px; height: 90px; margin: 0px auto; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));}
+#temperature { font-size: 5rem; font-weight: 800; line-height: 1; margin-top:5px; }
+#temperature sup { font-size: 2.2rem; font-weight: 600; vertical-align:top; margin-left:2px; }
+#weather-condition { font-size: 1.2rem; font-weight: 600; text-transform: capitalize; margin-bottom: 5px; color: var(--text-light)}
+#min-max-temp, #feels-like { font-size: 0.95rem; color: var(--text-medium); }
+
+.forecast-section { margin-bottom:20px;}
+.forecast-section h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; color:var(--text-medium); opacity:0.9; }
+.hourly-forecast { display: flex; overflow-x: auto; gap: 15px; padding:10px 2px 18px 2px;}
+.hourly-item { min-width: 60px; text-align: center; display:flex; flex-direction:column; align-items:center; background:rgba(0,0,0,0.1); padding:10px 5px; border-radius:15px; border: 1px solid rgba(255,255,255,0.05); }
+.hourly-item .hour-time { font-size: 0.8rem; color:var(--text-dark); margin-bottom:7px; }
+.hourly-item img { width: 32px; height: 32px; margin-bottom:7px; }
+.hourly-item .temp { font-weight: 600; font-size:1.05rem; }
+.hourly-item.now { background: rgba(255,255,255,0.15); }
+.hourly-item.now .hour-time, .hourly-item.now .temp { color: var(--accent-yellow); font-weight:700; }
+.hourly-forecast::-webkit-scrollbar { height: 4px; }
+.hourly-forecast::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+.weekly-forecast-item { display: flex; justify-content: space-between; align-items: center; padding: 11px 0px; border-bottom: 1px solid var(--card-border); }
+.weekly-forecast-item:last-child { border-bottom: none; }
+.weekly-forecast-item .day-info { display: flex; align-items: center; gap: 12px; flex-basis: 65%;}
+.weekly-forecast-item .day-main { font-weight: 600; font-size:0.95rem; min-width: 70px; }
+.weekly-forecast-item img { width: 32px; height: 32px; }
+.weekly-forecast-item .day-desc { font-size:0.85rem; color: var(--text-dark); }
+.weekly-forecast-item .temp-range { font-weight: 600; font-size:0.95rem; text-align:right; flex-basis:35%;}
+.loading-placeholder { color: var(--text-medium); text-align:center; padding: 20px 0;}
+
+@media (max-width: 360px) { .weather-app { padding: 25px 20px;} #city-name {font-size: 2rem;} #temperature {font-size: 4.5rem;} .forecast-section h3 { font-size: 1rem; } }
